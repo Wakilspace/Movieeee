@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:movie_app1/home_page.dart';
 import 'package:movie_app1/provider/pro_stack.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_app1/shared.dart';
 
 
-void main() {
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized;
+  await UserSimplePreferences().init();
   runApp( const MyApp());
 }
 

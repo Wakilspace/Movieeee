@@ -17,7 +17,7 @@ class _WishListState extends State<WishList> {
     return Consumer<ProviderVM>(
       builder: (context, value, child) => Scaffold(
         body: SafeArea(
-          child: Container(
+          child: SizedBox(
             height: screenSize.height,
             width: double.infinity,
             child: ListView.builder(

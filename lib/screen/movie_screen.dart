@@ -5,11 +5,16 @@ import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:movie_app1/provider/pro_stack.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_app1/shared.dart';
 
 
 class MovieScreen extends StatelessWidget {
   final Movie movie;
   const MovieScreen({Key? key, required this.movie}) : super(key: key);
+  
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,8 @@ class MovieScreen extends StatelessWidget {
           children: [
             Consumer<ProviderVM>(
               builder: (BuildContext context, ProviderVM value, Widget? child)=> InkWell(
-                onTap: () {
+                onTap: () async {
+                  await UserSimplePreferences().setMoviename(movie.name);
                   value.add(movie.name, movie.imagePath, movie.videoPath, movie.category, movie.year, movie.duration);
                 },
                 child: Container(
@@ -60,42 +66,7 @@ class MovieScreen extends StatelessWidget {
                   
                 ),
                 
-              ) ,
-
-              //   return ElevatedButton(
-              //   style: ElevatedButton.styleFrom(
-              //     padding: const EdgeInsets.all(15.0),
-              //     backgroundColor: const Color(0xFFFF7272),
-              //     fixedSize: Size(MediaQuery.of(context).size.width * 0.425, 50),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(15.0),
-              //     ),
-              //   ),
-                
-              //   onPressed: () {
-              //     value.add(movie.name, movie.imagePath,movie.category, movie.videoPath,movie.duration.inHours, movie.year as Duration);
-              //   },
-              //   child: RichText(
-              //     text: TextSpan(
-              //       style: Theme.of(context)
-              //           .textTheme
-              //           .bodyLarge!
-              //           .copyWith(color: Colors.white),
-              //       children: [
-              //         TextSpan(
-              //           text: 'Add to',
-              //           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              //               color: Colors.white, fontWeight: FontWeight.bold),
-              //         ),
-              //         const TextSpan(
-              //           text: 'watchlist',
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // );
-               
-              
+              ) ,            
             ),
             const SizedBox(
               width: 10,
